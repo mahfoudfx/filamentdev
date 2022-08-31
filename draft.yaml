@@ -1,0 +1,47 @@
+models:
+    ZxInventoryCategoryName:
+      name: json
+      description: json nullable
+      softDeletes
+  
+    ZxInventoryCategory:
+      parent_id: foreignId foreign:zx_inventory_categories nullable
+      category_name_id: foreignId foreign:zx_inventory_category_names
+      description: json nullable
+      enabled:  boolean default:1
+      icon_id: foreignId foreign:zx_icons nullable
+      indexes:
+        - unique: parent_id, category_name_id
+      relationships:
+        belongsToMany: ZxInventoryCategory
+
+    ZxIcon:
+      name: json
+      icon_url: string:128 unique
+      softDeletes
+
+    ZxInventoryItem:
+      brand_id: foreignId foreign:zx_icons nullable
+      parent_id: foreignId foreign:zx_inventory_items nullable
+      variant_or_part: boolean nullable
+      name: json
+      description: json nullable
+      model_no: string:64 nullable
+      barcode: string:64 unique nullable
+      photo_url: string:128 nullable
+      enabled: boolean default:1
+      softDeletes
+      relationships:
+        belongsToMany: ZxInventoryCategory, ZxInventoryItem
+        hasMany: ZxInventorySku
+      
+    ZxInventorySku:
+      item_id: foreignId foreign:zx_inventory_items
+      parent_id: foreignId foreign:zx_inventory_skus nullable
+      batch_no: string:64 nullable
+      serial_no: string:128 unique nullable
+      photo_url: string:128 nullable
+      enabled: boolean default:1
+      softDeletes
+      relationships:
+        belongsToMany: ZxInventorySku

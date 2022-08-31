@@ -14,7 +14,6 @@
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
-        "pxlrbt/filament-spotlight": "^0.3.3",
         "stijnvanouplines/blade-country-flags": "^1.0"
     },
     "require-dev": {

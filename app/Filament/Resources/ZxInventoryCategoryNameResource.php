@@ -109,9 +109,9 @@ class ZxInventoryCategoryNameResource extends Resource
     {
         return [
             'index' => Pages\ListZxInventoryCategoryNames::route('/'),
-            'create' => Pages\CreateZxInventoryCategoryName::route('/create'),
-            'view' => Pages\ViewZxInventoryCategoryName::route('/{record}'),
-            'edit' => Pages\EditZxInventoryCategoryName::route('/{record}/edit'),
+            //'create' => Pages\CreateZxInventoryCategoryName::route('/create'),
+            //'view' => Pages\ViewZxInventoryCategoryName::route('/{record}'),
+            //'edit' => Pages\EditZxInventoryCategoryName::route('/{record}/edit'),
         ];
     }
 

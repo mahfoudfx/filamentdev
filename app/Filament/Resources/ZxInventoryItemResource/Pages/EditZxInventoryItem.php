@@ -9,10 +9,12 @@ use Filament\Resources\Pages\EditRecord;
 class EditZxInventoryItem extends EditRecord
 {
     protected static string $resource = ZxInventoryItemResource::class;
+    use EditRecord\Concerns\Translatable;
 
     protected function getActions(): array
     {
         return [
+            Actions\LocaleSwitcher::make(),
             Actions\ViewAction::make(),
             Actions\DeleteAction::make(),
             Actions\ForceDeleteAction::make(),

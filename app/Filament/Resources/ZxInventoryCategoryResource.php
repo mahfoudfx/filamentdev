@@ -90,10 +90,9 @@ class ZxInventoryCategoryResource extends Resource
                     ->hint(__('Translatable'))->hintIcon('heroicon-s-translate')
                     ->maxLength(64),
                 Select::make('parent_id')->label(__('Parent'))->searchable()
-                    ->relationship('parent', 'name'),
-                    //->getSearchResultsUsing(fn (string $search) => User::where('name', 'like', "%{$search}%")->limit(50)->pluck('name', 'id'))
-                    //->getOptionLabelUsing(fn ($value): ?string => User::find($value)?->name),
-                //->options(ZxInventoryCategory::all()->pluck('name', 'id')),
+                    ->relationship('parent', 'name')
+                    ->getSearchResultsUsing(fn (string $search) => ZxInventoryCategory::where('categoryName.name', 'like', "%{$search}%")->limit(50)->pluck('name', 'id')),
+                    //->options(ZxInventoryCategory::all()->pluck('name', 'id')),
                 Select::make('icon_id')->label(__('Icon'))->searchable()
                     ->relationship('icon', 'name'),
                 Toggle::make('enabled')->label(__('Enabled'))->inline(false)->default(true),

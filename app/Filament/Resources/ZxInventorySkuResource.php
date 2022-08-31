@@ -8,7 +8,11 @@ use Filament\Resources\Form;
 use Filament\Resources\Table;
 use App\Models\ZxInventorySku;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Toggle;
 use Illuminate\Database\Eloquent\Model;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\ZxInventorySkuResource\Pages;
@@ -68,7 +72,13 @@ class ZxInventorySkuResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Select::make('item_id')->label(__('Item')),
+                Select::make('parent_id')->label(__('Parent')),
+                TextInput::make('batch_no')->label(__('Batch Number')),
+                TextInput::make('serial_no')->label(__('Serial Number')),
+                FileUpload::make('photo_url')->label(__('Photo')),
+                Toggle::make('enabled')->label(__('Enabled'))
+                    ->inline(false)->default(true),
             ]);
     }
 
